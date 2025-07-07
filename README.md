@@ -18,7 +18,7 @@ To publish the configuration file, run the following command:
 php artisan vendor:publish --provider="Foxen\LaravelModelActivityLog\Providers\ActivityLogServiceProvider" --tag="config"
 ```
 
-This will create a `foxen_activitylog.php` file in your `config` directory.
+This will create a `foxen_activitylog.php` file in your `config` directory, which can be modified as required.
 
 Finally, you need to run the migrations to create the `activity_log` table:
 
