@@ -11,5 +11,5 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
-    protected $redactedActivityLogAttributes = ["password"];
+    protected $redactedActivityLogAttributes = ['password'];
 }

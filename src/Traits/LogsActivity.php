@@ -11,30 +11,30 @@ trait LogsActivity
     protected static function bootLogsActivity(): void
     {
         static::created(function (Model $model) {
-            static::logActivity($model, "created");
+            static::logActivity($model, 'created');
         });
 
         static::updated(function (Model $model) {
-            static::logActivity($model, "updated");
+            static::logActivity($model, 'updated');
         });
 
         static::deleted(function (Model $model) {
-            static::logActivity($model, "deleted");
+            static::logActivity($model, 'deleted');
         });
 
-        if (method_exists(static::class, "restored")) {
+        if (method_exists(static::class, 'restored')) {
             static::restored(function (Model $model) {
-                static::logActivity($model, "restored");
+                static::logActivity($model, 'restored');
             });
         }
     }
 
     protected static function logActivity(Model $model, string $event): void
     {
-        $activity = new Activity();
+        $activity = new Activity;
         $activity->log_name =
             $model->activityLogName ??
-            config("foxen_activitylog.default_log_name", "default");
+            config('foxen_activitylog.default_log_name', 'default');
         $activity->event = $event;
         $activity->subject_type = $model->getMorphClass();
         $activity->subject_id = $model->getKey();
@@ -55,12 +55,11 @@ trait LogsActivity
         $modelId = $model->getKey();
 
         return match ($event) {
-            "created" => "User created {$modelName} ID: {$modelId}",
-            "updated" => "User updated {$modelName} ID: {$modelId}",
-            "deleted" => "User deleted {$modelName} ID: {$modelId}",
-            "restored" => "User restored {$modelName} ID: {$modelId}",
-            default
-                => "User performed {$event} on {$modelName} ID: {$modelId}",
+            'created' => "User created {$modelName} ID: {$modelId}",
+            'updated' => "User updated {$modelName} ID: {$modelId}",
+            'deleted' => "User deleted {$modelName} ID: {$modelId}",
+            'restored' => "User restored {$modelName} ID: {$modelId}",
+            default => "User performed {$event} on {$modelName} ID: {$modelId}",
         };
     }
 
@@ -68,7 +67,7 @@ trait LogsActivity
         Model $model,
         string $event
     ): ?array {
-        if ($event !== "updated") {
+        if ($event !== 'updated') {
             return null;
         }
 
@@ -80,12 +79,12 @@ trait LogsActivity
 
         $ignoreAttributes = array_merge(
             $model->ignoreActivityLogAttributes ?? [],
-            ["updated_at"]
+            ['updated_at']
         );
 
         $redactedAttributes = array_merge(
             $model->redactedActivityLogAttributes ?? [],
-            config("foxen_activitylog.redact_attributes", [])
+            config('foxen_activitylog.redact_attributes', [])
         );
 
         foreach ($dirty as $attribute => $value) {
@@ -94,8 +93,8 @@ trait LogsActivity
             }
 
             if (in_array($attribute, $redactedAttributes)) {
-                $old[$attribute] = "[REDACTED]";
-                $new[$attribute] = "[REDACTED]";
+                $old[$attribute] = '[REDACTED]';
+                $new[$attribute] = '[REDACTED]';
 
                 continue;
             }
@@ -109,8 +108,8 @@ trait LogsActivity
         }
 
         return [
-            "old" => $old,
-            "new" => $new,
+            'old' => $old,
+            'new' => $new,
         ];
     }
 }

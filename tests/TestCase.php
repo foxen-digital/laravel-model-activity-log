@@ -3,7 +3,6 @@
 namespace Foxen\LaravelModelActivityLog\Tests;
 
 use Foxen\LaravelModelActivityLog\Providers\ActivityLogServiceProvider;
-use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -18,12 +17,12 @@ class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
-        $migration = include __DIR__ .
-            "/migrations/2025_07_07_000001_create_posts_table.php";
+        $migration = include __DIR__.
+            '/migrations/2025_07_07_000001_create_posts_table.php';
         $migration->up();
 
-        $migration = include __DIR__ .
-            "/migrations/2025_07_07_000002_create_users_table.php";
+        $migration = include __DIR__.
+            '/migrations/2025_07_07_000002_create_users_table.php';
         $migration->up();
     }
 }

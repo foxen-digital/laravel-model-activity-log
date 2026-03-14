@@ -10,21 +10,21 @@ class ActivityLogServiceProvider extends ServiceProvider
     {
         $this->publishes(
             [
-                __DIR__ . "/../../config/foxen_activitylog.php" => config_path(
-                    "foxen_activitylog.php"
+                __DIR__.'/../../config/foxen_activitylog.php' => config_path(
+                    'foxen_activitylog.php'
                 ),
             ],
-            "config"
+            'config'
         );
 
-        $this->loadMigrationsFrom(__DIR__ . "/../../database/migrations");
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . "/../../config/foxen_activitylog.php",
-            "foxen_activitylog"
+            __DIR__.'/../../config/foxen_activitylog.php',
+            'foxen_activitylog'
         );
     }
 }
