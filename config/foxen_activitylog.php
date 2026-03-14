@@ -11,7 +11,7 @@ return [
     | wish.
     |
     */
-    "table_name" => "activity_log",
+    'table_name' => 'activity_log',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | specified on the model.
     |
     */
-    "default_log_name" => "default",
+    'default_log_name' => 'default',
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ return [
     | activity log. You may add any attribute names to this array.
     |
     */
-    "redact_attributes" => ["password"],
+    'redact_attributes' => ['password'],
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     | model:prune command in your application's `routes/console.php` file.
     |
     */
-    "prune_activity_log" => false,
+    'prune_activity_log' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -56,5 +56,5 @@ return [
     | is considered prunable.
     |
     */
-    "prune_older_than_days" => 90,
+    'prune_older_than_days' => 90,
 ];
