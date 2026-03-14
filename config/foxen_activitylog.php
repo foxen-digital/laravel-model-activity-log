@@ -11,7 +11,7 @@ return [
     | wish.
     |
     */
-    'table_name' => 'activity_log',
+    "table_name" => "activity_log",
 
     /*
     |--------------------------------------------------------------------------
@@ -22,19 +22,7 @@ return [
     | specified on the model.
     |
     */
-    'default_log_name' => 'default',
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Model
-    |--------------------------------------------------------------------------
-    |
-    | This is the model that will be used to identify the causer of the
-    | activity. You may change this value to any model that extends
-    | Illuminate\Foundation\Auth\User.
-    |
-    */
-    'user_model' => 'App\Models\User',
+    "default_log_name" => "default",
 
     /*
     |--------------------------------------------------------------------------
@@ -45,9 +33,7 @@ return [
     | activity log. You may add any attribute names to this array.
     |
     */
-    'redact_attributes' => [
-        'password',
-    ],
+    "redact_attributes" => ["password"],
 
     /*
     |--------------------------------------------------------------------------
@@ -56,10 +42,10 @@ return [
     |
     | This is a boolean value that determines whether or not the activity log
     | will be pruned. If this is set to true, you must also schedule the
-    | model:prune command in your application's console kernel.
+    | model:prune command in your application's `routes/console.php` file.
     |
     */
-    'prune_activity_log' => false,
+    "prune_activity_log" => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -70,5 +56,5 @@ return [
     | is considered prunable.
     |
     */
-    'prune_older_than_days' => 90,
+    "prune_older_than_days" => 90,
 ];

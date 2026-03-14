@@ -24,5 +24,9 @@ class TestCase extends Orchestra
         $migration = include __DIR__.
             '/migrations/2025_07_07_000002_create_users_table.php';
         $migration->up();
+
+        $migration = include __DIR__.
+            '/migrations/2025_07_07_000003_create_soft_deleting_posts_table.php';
+        $migration->up();
     }
 }

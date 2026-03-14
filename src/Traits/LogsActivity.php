@@ -53,13 +53,14 @@ trait LogsActivity
     ): string {
         $modelName = class_basename($model);
         $modelId = $model->getKey();
+        $actor = Auth::check() ? 'User' : 'System';
 
         return match ($event) {
-            'created' => "User created {$modelName} ID: {$modelId}",
-            'updated' => "User updated {$modelName} ID: {$modelId}",
-            'deleted' => "User deleted {$modelName} ID: {$modelId}",
-            'restored' => "User restored {$modelName} ID: {$modelId}",
-            default => "User performed {$event} on {$modelName} ID: {$modelId}",
+            'created' => "{$actor} created {$modelName} ID: {$modelId}",
+            'updated' => "{$actor} updated {$modelName} ID: {$modelId}",
+            'deleted' => "{$actor} deleted {$modelName} ID: {$modelId}",
+            'restored' => "{$actor} restored {$modelName} ID: {$modelId}",
+            default => "{$actor} performed {$event} on {$modelName} ID: {$modelId}",
         };
     }
 

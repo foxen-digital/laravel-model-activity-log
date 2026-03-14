@@ -5,6 +5,7 @@ namespace Foxen\LaravelModelActivityLog\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Activity extends Model
 {
@@ -17,6 +18,16 @@ class Activity extends Model
     public function getTable()
     {
         return config('foxen_activitylog.table_name', 'activity_log');
+    }
+
+    public function subject(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function causer(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     public function prunable(): Builder

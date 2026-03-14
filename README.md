@@ -42,6 +42,10 @@ class Post extends Model
 }
 ```
 
+The following events are automatically logged: `created`, `updated`, `deleted`. If your model uses `SoftDeletes`, the `restored` event is logged as well.
+
+When an action is performed by an authenticated user, they are recorded as the causer. Actions performed without an authenticated user (e.g. from a console command or queue job) are attributed to `System`.
+
 ### Customizing the Log Name
 
 By default, the log name is set to `default`. You can customize this on a per-model basis by adding a `protected $activityLogName` property to your model:
@@ -112,6 +116,24 @@ $activities = Activity::forCauserType('App\Models\User')->get();
 $activities = Activity::forEvent('created')->get();
 ```
 
+You can access the subject and causer models directly via their relationships:
+
+```php
+$activity = Activity::first();
+
+$subject = $activity->subject; // The model that was acted upon
+$causer  = $activity->causer;  // The user who performed the action, or null
+```
+
+For `updated` events, the `properties` field contains the old and new values of changed attributes:
+
+```php
+$activity = Activity::forEvent('updated')->first();
+
+$old = $activity->properties['old']; // ['title' => 'Old Title']
+$new = $activity->properties['new']; // ['title' => 'New Title']
+```
+
 ### Pruning Logs
 
 The package can automatically prune old activity log entries. To enable this, set the `prune_activity_log` option to `true` in your `config/foxen_activitylog.php` file and configure the `prune_older_than_days` option.
@@ -126,13 +148,12 @@ return [
 ];
 ```
 
-Once enabled, you must schedule the `model:prune` command in your application's `app/Console/Kernel.php` file:
+Once enabled, you must schedule the `model:prune` command in your application's `routes/console.php` file:
 
 ```php
-protected function schedule(Schedule $schedule)
-{
-    $schedule->command('model:prune')->daily();
-}
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('model:prune')->daily();
 ```
 
 ## Testing
