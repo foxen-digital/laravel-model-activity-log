@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -17,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property int|null $causer_id
  * @property string $description
  * @property array<string, mixed>|null $properties
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Activity extends Model
 {
