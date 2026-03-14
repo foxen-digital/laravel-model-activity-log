@@ -162,9 +162,7 @@ it('uses the model activityLogName when set', function () {
         protected $table = 'posts';
     };
 
-    $post->title = 'Test Title';
-    $post->body = 'Test Body';
-    $post->save();
+    $post->fill(['title' => 'Test Title', 'body' => 'Test Body'])->save();
 
     $activity = Activity::where('log_name', 'custom-log')->first();
 

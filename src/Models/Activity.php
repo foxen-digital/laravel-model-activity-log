@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property int $id
+ * @property string $log_name
+ * @property string $event
+ * @property string $subject_type
+ * @property int $subject_id
+ * @property string|null $causer_type
+ * @property int|null $causer_id
+ * @property string $description
+ * @property array<string, mixed>|null $properties
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ */
 class Activity extends Model
 {
     use MassPrunable;

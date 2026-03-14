@@ -18,7 +18,9 @@
     "orchestra/testbench": "^9.0|^10.0",
     "pestphp/pest": "^3.0",
     "pestphp/pest-plugin-laravel": "^3.0",
-    "laravel/pint": "^1.23"
+    "laravel/pint": "^1.23",
+    "phpstan/phpstan": "^2.1",
+    "larastan/larastan": "^3.9"
   },
   "autoload": {
     "psr-4": {
@@ -40,6 +42,7 @@
   "scripts": {
     "test": "vendor/bin/pest",
     "test-coverage": "vendor/bin/pest --coverage",
+    "analyse": "vendor/bin/phpstan",
     "format": "vendor/bin/pint"
   },
   "config": {
