@@ -2,6 +2,10 @@
 
 A simple Laravel package to automatically record basic activity (creation, updates with attribute changes, deletion, restoration) performed on specified Eloquent models, and provide a mechanism for automatically pruning old log entries.
 
+## Requirements
+- [PHP 8.3+](https://php.net/releases/)
+- [Laravel 12+](https://laravel.com)
+
 ## Installation
 
 You can install the package via composer:
